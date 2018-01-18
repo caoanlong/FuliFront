@@ -1,0 +1,34 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+}
+body {
+	/*background-color: #fbf9fe*/
+}
+.eclipsis {
+	overflow: hidden; 
+	text-overflow: ellipsis;  
+	white-space: nowrap;
+}
+.block {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #fbf9fe;
+}
+.clearfix:before,.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.clearfix {
+	zoom: 1;
+}
+.pad-top-36 {
+	padding-top: 36px
+}
