@@ -6,7 +6,11 @@
 	-webkit-box-sizing:border-box; /* Safari */
 }
 body {
-	/*background-color: #fbf9fe*/
+	background-color: #fbf9fe;
+	padding: 0;
+	min-width: 300PX;
+	max-width: 640PX;
+	margin: 0 auto;
 }
 .eclipsis {
 	overflow: hidden; 
