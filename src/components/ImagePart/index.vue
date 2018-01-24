@@ -8,7 +8,7 @@
 					<div class="itemBox">
 						<img :src="leftItem.url" />
 						<p class="title">新人嫩模杨漫妮居家私房秀傲人豪乳极致美臀诱惑</p>
-						<p class="otherInfo"><span class="view"><svg-icon icon-class="eye"></svg-icon> 123</span><span><svg-icon icon-class="like"></svg-icon> 123</span></p>
+						<p class="otherInfo"><span class="view"><svg-icon icon-class="eye" font-size="14"></svg-icon> 10233</span><span><svg-icon icon-class="like"></svg-icon> 3567</span></p>
 					</div>
 				</div>
 			</div>
@@ -17,7 +17,7 @@
 					<div class="itemBox">
 						<img :src="rightItem.url" />
 						<p class="title">新人嫩模杨漫妮居家私房秀傲人豪乳极致美臀诱惑</p>
-						<p class="otherInfo"><span class="view"><svg-icon icon-class="eye"></svg-icon> 123</span><span><svg-icon icon-class="like"></svg-icon> 123</span></p>
+						<p class="otherInfo"><span class="view"><svg-icon icon-class="eye" font-size="14"></svg-icon> 75403</span><span><svg-icon icon-class="like"></svg-icon> 10293</span></p>
 					</div>
 				</div>
 			</div>
@@ -99,6 +99,7 @@ export default {
 				&.otherInfo
 					height 20px
 					color #c7c7c7
+					font-family Helvetica,HelveticaNeue,Droid Sans
 					.view
 						margin-right 10px
 </style>

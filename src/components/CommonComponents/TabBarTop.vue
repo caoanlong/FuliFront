@@ -32,14 +32,17 @@
 				width 624px
 				padding 0
 				margin 0
+				height 35px
+				border-bottom 1px solid #ddd
 				li
 					float left
 					list-style-type none
-					height 36px
-					line-height 36px
-					padding 0 20px
+					height 35px
+					line-height 35px
+					padding 0 15px
 					&.cur
 						height 35px
 						line-height 35px
-						border-bottom 1px solid #3385ff
+						color #3385ff
+						border-bottom 2px solid #3385ff
 </style>
