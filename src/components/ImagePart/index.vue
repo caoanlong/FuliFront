@@ -28,7 +28,6 @@
 <script type="text/javascript">
 import TabBarTop from "../CommonComponents/TabBarTop"
 import TabBarBottom from "../CommonComponents/TabBarBottom"
-import { imgs } from "../../assets/data"
 import axios from 'axios'
 export default {
 	data() {
