@@ -1,48 +1,72 @@
 <template>
 	<div class="tab-bar-top">
-		<div class="topNav">
-			<ul>
-				<li class="cur">性感美女</li>
-				<li>清纯美眉</li>
-				<li>美女校花</li>
-				<li>性感车模</li>
-				<li>旗袍美女</li>
-				<li>明星写真</li>
-			</ul>
+		<div style="width: 100%;overflow-x:scroll;-webkit-overflow-scrolling:touch;">
+			<tab style="width:700px;" bar-active-color="#04BE02" :line-width="1">
+				<tab-item v-for="(item,index) in imgTabBar" :key="item.sort" @click="tab(index)">{{item.name}}</tab-item>
+			</tab>
 		</div>
 	</div>
 </template>
 <script type="text/javascript">
-	export default {
-
+import { Tab, TabItem } from 'vux'
+export default {
+	data() {
+		return {
+			activeIndex: 0,
+			imgTabBar: [{
+					"name": "性感美女",
+					"sort": 1
+				},
+				{
+					"name": "丝袜美腿",
+					"sort": 2
+				},
+				{
+					"name": "唯美写真",
+					"sort": 3
+				},
+				{
+					"name": "网络美女",
+					"sort": 4
+				},
+				{
+					"name": "高清美女",
+					"sort": 5
+				},
+				{
+					"name": "模特美女",
+					"sort": 6
+				},
+				{
+					"name": "体育美女",
+					"sort": 7
+				},
+				{
+					"name": "动漫美女",
+					"sort": 8
+				}
+			]
+		}
+	},
+	methods: {
+		tab: function(index){
+			this.activeIndex = index;
+		}
+	},
+	components: {
+		Tab,
+		TabItem
 	}
+}
+
 </script>
 <style lang="stylus" scoped>
-	.tab-bar-top
-		position fixed
-		top 0
-		left 0
-		z-index 10
-		width 100%
-		height 36px
-		background-color #fff
-		.topNav
-			overflow-x auto
-			ul
-				width 624px
-				padding 0
-				margin 0
-				height 35px
-				border-bottom 1px solid #ddd
-				li
-					float left
-					list-style-type none
-					height 35px
-					line-height 35px
-					padding 0 15px
-					&.cur
-						height 35px
-						line-height 35px
-						color #3385ff
-						border-bottom 2px solid #3385ff
+.tab-bar-top
+	position fixed
+	top 0
+	left 0
+	z-index 10
+	width 100%
+	height 44px
+	background-color #fff
 </style>

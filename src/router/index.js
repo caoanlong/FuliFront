@@ -16,6 +16,10 @@ export default new Router({
 					name: 'image',
 					component: () => import('@/components/ImagePart')
 				},{
+					path: '/imagedetail',
+					name: 'imagedetail',
+					component: () => import('@/components/ImagePart/ImageDetail')
+				},{
 					path: '/story',
 					name: 'story',
 					component: () => import('@/components/StoryPart')

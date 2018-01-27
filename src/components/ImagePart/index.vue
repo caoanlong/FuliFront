@@ -1,25 +1,25 @@
 <template>
-	<div class="pad-top-36">
+	<div class="padt">
 		<tab-bar-top/>
 		<div class="fullBlock"></div>
 		<div class="list clearfix">
 			<div class="left">
-				<div class="item" v-for="(leftItem, index) in imgData" v-if="index % 2 != 0">
+				<router-link tag="div" :to="{name:'imagedetail',query:{id:leftItem.listItemID}}" class="item" v-for="(leftItem, index) in imgData" :key="leftItem.listItemID" v-if="index % 2 != 0">
 					<div class="itemBox">
 						<img :src="leftItem.url" />
-						<p class="title">新人嫩模杨漫妮居家私房秀傲人豪乳极致美臀诱惑</p>
-						<p class="otherInfo"><span class="view"><svg-icon icon-class="eye" font-size="14"></svg-icon> 10233</span><span><svg-icon icon-class="like"></svg-icon> 3567</span></p>
+						<p class="title">{{leftItem.title}}</p>
+						<p class="otherInfo"><span class="view"><svg-icon icon-class="eye" font-size="14"></svg-icon> {{leftItem.visited}}</span><span><svg-icon icon-class="like"></svg-icon> {{leftItem.like}}</span></p>
 					</div>
-				</div>
+				</router-link>
 			</div>
 			<div class="right">
-				<div class="item" v-for="(rightItem, index) in imgData" v-if="index % 2 == 0">
+				<router-link tag="div" :to="{name:'imagedetail',query:{id:leftItem.listItemID}}" class="item" v-for="(rightItem, index) in imgData" :key="rightItem.listItemID" v-if="index % 2 != 0">
 					<div class="itemBox">
-						<img :src="rightItem.url" />
-						<p class="title">新人嫩模杨漫妮居家私房秀傲人豪乳极致美臀诱惑</p>
-						<p class="otherInfo"><span class="view"><svg-icon icon-class="eye" font-size="14"></svg-icon> 75403</span><span><svg-icon icon-class="like"></svg-icon> 10293</span></p>
+						<img :src="rightItem.surfaceUrl" />
+						<p class="title">{{leftItem.title}}</p>
+						<p class="otherInfo"><span class="view"><svg-icon icon-class="eye" font-size="14"></svg-icon> {{leftItem.visited}}</span><span><svg-icon icon-class="like"></svg-icon> {{leftItem.like}}</span></p>
 					</div>
-				</div>
+				</router-link>
 			</div>
 		</div>
 		<!--<tab-bar-bottom/> -->
@@ -41,7 +41,6 @@ export default {
 		this.getList()
 	},
 	methods:{
-
 		getList(){
 			let url = 'http://39.108.245.177:3001/getOpenImg'
 			let params = {
@@ -80,7 +79,7 @@ export default {
 		.itemBox
 			background #fff
 			border-radius 4px
-			box-shadow 2px 2px 5px #ddd
+			box-shadow 2px 2px 5px rgba(0,0,0,.2)
 			overflow hidden
 			padding-bottom 8px
 			img
