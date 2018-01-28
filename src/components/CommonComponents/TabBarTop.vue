@@ -2,7 +2,7 @@
 	<div class="tab-bar-top">
 		<div style="width: 100%;overflow-x:scroll;-webkit-overflow-scrolling:touch;">
 			<tab style="width:700px;" bar-active-color="#04BE02" :line-width="1">
-				<tab-item v-for="(item,index) in imgTabBar" :key="item.sort" @click="tab(index)">{{item.name}}</tab-item>
+				<tab-item v-for="(item,index) in imgTabBar" :selected="index === 0" :key="item.sort" @click="tab(index)">{{item.name}}</tab-item>
 			</tab>
 		</div>
 	</div>
