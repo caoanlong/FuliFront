@@ -4,20 +4,20 @@
 		<div class="fullBlock"></div>
 		<div class="list clearfix">
 			<div class="left">
-				<router-link tag="div" :to="{name:'imagedetail',query:{id:leftItem.listItemID}}" class="item" v-for="(leftItem, index) in imgData" :key="leftItem.listItemID" v-if="index % 2 != 0">
+				<router-link tag="div" :to="{name:'imagedetail'}" class="item" v-for="(leftItem, index) in imgData" :key="leftItem.url" v-if="index % 2 == 0">
 					<div class="itemBox">
 						<img :src="leftItem.url" />
-						<p class="title">{{leftItem.title}}</p>
-						<p class="otherInfo"><span class="view"><svg-icon icon-class="eye" font-size="14"></svg-icon> {{leftItem.visited}}</span><span><svg-icon icon-class="like"></svg-icon> {{leftItem.like}}</span></p>
+						<p class="title">{{leftItem.url}}</p>
+						<p class="otherInfo"><span class="view"><svg-icon icon-class="eye" font-size="14"></svg-icon> 4433</span><span><svg-icon icon-class="like"></svg-icon> 4444</span></p>
 					</div>
 				</router-link>
 			</div>
 			<div class="right">
-				<router-link tag="div" :to="{name:'imagedetail',query:{id:leftItem.listItemID}}" class="item" v-for="(rightItem, index) in imgData" :key="rightItem.listItemID" v-if="index % 2 != 0">
+				<router-link tag="div" :to="{name:'imagedetail'}" class="item" v-for="(rightItem, index) in imgData" :key="rightItem.surfaceUrl" v-if="index % 2 != 0">
 					<div class="itemBox">
-						<img :src="rightItem.surfaceUrl" />
-						<p class="title">{{leftItem.title}}</p>
-						<p class="otherInfo"><span class="view"><svg-icon icon-class="eye" font-size="14"></svg-icon> {{leftItem.visited}}</span><span><svg-icon icon-class="like"></svg-icon> {{leftItem.like}}</span></p>
+						<img :src="rightItem.url" />
+						<p class="title">{{rightItem.url}}</p>
+						<p class="otherInfo"><span class="view"><svg-icon icon-class="eye" font-size="14"></svg-icon> 1111</span><span><svg-icon icon-class="like"></svg-icon> 2222</span></p>
 					</div>
 				</router-link>
 			</div>
@@ -32,8 +32,6 @@ import axios from 'axios'
 export default {
 	data() {
 		return {
-			leftData: [],
-        	rightData: [],
         	imgData: []
 		};
 	},
@@ -44,7 +42,7 @@ export default {
 		getList(){
 			let url = 'http://39.108.245.177:3001/getOpenImg'
 			let params = {
-				page:4
+				page:7
 			}
 			axios.get(url, {params: params}).then((response) => {			
 				this.imgData = response.data.data
