@@ -1,6 +1,6 @@
 <template>
 	<div class="padt">
-		<tab-bar-top/>
+		<tab-bar-top @curPage="curPage"/>
 		<div class="fullBlock"></div>
 		<div class="list clearfix">
 			<div class="left">
@@ -32,22 +32,27 @@ import axios from 'axios'
 export default {
 	data() {
 		return {
-        	imgData: []
+        	imgData: [],
+        	page:1
 		};
 	},
 	created() {
 		this.getList()
 	},
 	methods:{
-		getList(){
+		getList(page){
 			let url = 'http://39.108.245.177:3001/getOpenImg'
 			let params = {
-				page:7
+				page: page || 1
 			}
 			axios.get(url, {params: params}).then((response) => {			
 				this.imgData = response.data.data
 				console.log(response.data.data)
 			})
+		},
+		curPage(index) {
+			console.log(index)
+			this.getList(index)
 		}
 	},
 	components: {
