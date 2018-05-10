@@ -1,10 +1,12 @@
 <template>
 	<div class="tab-bar-top">
-		<div style="width: 100%;overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:640px;margin:0 auto">
-			<tab style="width:700px;" bar-active-color="#04BE02" :line-width="1" >
-				<tab-item v-for="(item,index) in imgTabBar" :selected="index === 0" :key="item.sort" @click.native="tab(index)">{{item.name}}</tab-item>
+		<!-- <tab >
+			<tab-item v-for="(item,index) in imgTabBar" :selected="index === 0" :key="item.sort" @click.native="tab(index)">{{item.name}}</tab-item>
+			</tab> -->
+			<tab>
+				<tab-item v-for="(item,index) in imgTabBar" :key="index" :selected="activeIndex==index" class="navItem">{{item.name}}</tab-item>
 			</tab>
-		</div>
+		
 	</div>
 </template>
 <script type="text/javascript">
@@ -68,6 +70,7 @@ export default {
 	left 0
 	z-index 10
 	width 100%
-	height 44px
 	background-color #fff
+	.navItem
+		-webkit-tap-highlight-color transparent
 </style>

@@ -36,3 +36,6 @@ body {
 .padt {
 	padding-top: 44px
 }
+.scrollable
+{padding-bottom: 0!important}
+.scrollable .vux-tab-ink-bar{bottom:0!important;}
