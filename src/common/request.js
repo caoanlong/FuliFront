@@ -1,6 +1,5 @@
 import axios from 'axios'
-import { Message } from 'element-ui'
-import store from '../store'
+import { vue } from '../main'
 
 // create an axios instance
 const service = axios.create({
@@ -29,21 +28,17 @@ service.interceptors.response.use(
 				|| response.data.code == 103
 				|| response.data.code == 104 ) {
 				localStorage.clear()
-				Message.error(response.data.msg)
+				vue.$vux.toast.text(response.data.msg)
 				window.location.href = '/#/login'
 				return Promise.reject('error')
 			}
-			Message.error(response.data.msg)
+			vue.$vux.toast.text(response.data.msg)
 			return Promise.reject('error')
 		}
 		return response
 	},
 	error => {
-		Message({
-			message: error.message,
-			type: 'error',
-			duration: 5 * 1000
-		})
+		vue.$vux.toast.text(error.message)
 		return Promise.reject(error)
 	})
 

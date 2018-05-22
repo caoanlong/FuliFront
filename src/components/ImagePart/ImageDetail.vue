@@ -1,44 +1,42 @@
 <template>
 	<div class="pad-top-36">
-		<tab-bar-top/>
 		<div class="fullBlock"></div>
 		<div class="imgView">
-			<img :src="item.url" v-for="item in imglist" :key="item.url"/>
+			<x-img :src="imgUrl + item" v-for="item in content" :key="item"/>
 		</div>
 		<!--<tab-bar-bottom/> -->
 	</div>
 </template>
 <script type="text/javascript">
-import TabBarTop from "../CommonComponents/TabBarTop"
 import TabBarBottom from "../CommonComponents/TabBarBottom"
-import axios from 'axios'
+import request from '../../common/request'
+import { XImg } from 'vux'
 export default {
 	data() {
 		return {
-			id:'',
-        	imgData:'',
-        	imglist:''
+        	content: [],
 		};
 	},
 	created() {
 		this.getDetail()
 	},
 	methods:{
-		getDetail(){
-			let url = 'http://192.168.1.17:3000/imgItemDetail'
-			// let params = {
-			// 	"id": this.$route.query.id
-			// }
-			axios.get(url).then((response) => {			
-				this.imgData = response.data
-				this.imglist = response.data.list
-				console.log(response.data.list)
+		getDetail() {
+			let params = {
+				image_id: this.$route.query.image_id
+			}
+			request({
+				url: '/image/info',
+				params
+			}).then(res => {
+				let imgInfo = res.data.data
+				this.content = imgInfo.content.split(',')
 			})
 		}
 	},
 	components: {
-		TabBarTop,
-		TabBarBottom
+		TabBarBottom,
+		XImg
 	}
 };
 

@@ -1,23 +1,41 @@
 <template>
 	<div class="padt">
-		<tab-bar-top @curPage="curPage"/>
+		<tab-bar-top @selectLevel="selectLevel"/>
 		<div class="fullBlock"></div>
 		<div class="list clearfix">
 			<div class="left">
-				<router-link tag="div" :to="{name:'imagedetail'}" class="item" v-for="(leftItem, index) in imgData" :key="leftItem.url" v-if="index % 2 == 0">
+				<router-link 
+					tag="div" 
+					:to="{name: 'imagedetail', query: {image_id: leftItem.image_id}}" 
+					class="item" 
+					v-for="(leftItem, index) in imgList" 
+					:key="leftItem.image_id" 
+					v-if="index % 2 == 0">
 					<div class="itemBox">
-						<img :src="leftItem.url" />
-						<p class="title">{{leftItem.url}}</p>
-						<p class="otherInfo"><span class="view"><svg-icon icon-class="eye" font-size="14"></svg-icon> 4433</span><span><svg-icon icon-class="like"></svg-icon> 4444</span></p>
+						<x-img :src="imgUrlMini + leftItem.thumbnail.split('/image/uploads')[1]"/>
+						<p class="title">{{leftItem.name}}</p>
+						<p class="otherInfo">
+							<span class="view"><svg-icon icon-class="eye" font-size="14"></svg-icon> {{leftItem.view}}</span>
+							<span><svg-icon icon-class="like"></svg-icon> {{leftItem.like}}</span>
+						</p>
 					</div>
 				</router-link>
 			</div>
 			<div class="right">
-				<router-link tag="div" :to="{name:'imagedetail'}" class="item" v-for="(rightItem, index) in imgData" :key="rightItem.surfaceUrl" v-if="index % 2 != 0">
+				<router-link 
+					tag="div" 
+					:to="{name: 'imagedetail', query: {image_id: rightItem.image_id}}" 
+					class="item" 
+					v-for="(rightItem, index) in imgList" 
+					:key="rightItem.image_id" 
+					v-if="index % 2 != 0">
 					<div class="itemBox">
-						<img :src="rightItem.url" />
-						<p class="title">{{rightItem.url}}</p>
-						<p class="otherInfo"><span class="view"><svg-icon icon-class="eye" font-size="14"></svg-icon> 1111</span><span><svg-icon icon-class="like"></svg-icon> 2222</span></p>
+						<x-img :src="imgUrlMini + leftItem.thumbnail.split('/image/uploads')[1]"/>
+						<p class="title">{{rightItem.name}}</p>
+						<p class="otherInfo">
+							<span class="view"><svg-icon icon-class="eye" font-size="14"></svg-icon> {{leftItem.view}}</span>
+							<span><svg-icon icon-class="like"></svg-icon> {{leftItem.like}}</span>
+						</p>
 					</div>
 				</router-link>
 			</div>
@@ -28,36 +46,40 @@
 <script type="text/javascript">
 import TabBarTop from "../CommonComponents/TabBarTop"
 import TabBarBottom from "../CommonComponents/TabBarBottom"
-import axios from 'axios'
+import request from '../../common/request'
+import { XImg } from 'vux'
 export default {
 	data() {
 		return {
-        	imgData: [],
-        	page:1
+        	imgList: [],
+			pageIndex: 1,
+			pageSize: 10
 		};
 	},
 	created() {
-		this.getList()
 	},
 	methods:{
-		getList(page){
-			let url = 'http://39.108.245.177:3001/getOpenImg'
-			let params = {
-				page: page || 1
-			}
-			axios.get(url, {params: params}).then((response) => {			
-				this.imgData = response.data.data
-				console.log(response.data.data)
-			})
+		selectLevel(level_id) {
+			this.getList(level_id)
 		},
-		curPage(index) {
-			console.log(index)
-			this.getList(index)
+		getList(level_id){
+			let params = {
+				pageIndex: this.pageIndex,
+				pageSize: this.pageSize,
+				level_id
+			}
+			request({
+				url: '/image/list',
+				params
+			}).then(res => {
+				this.imgList = res.data.data.rows
+			})
 		}
 	},
 	components: {
 		TabBarTop,
-		TabBarBottom
+		TabBarBottom,
+		XImg
 	}
 };
 

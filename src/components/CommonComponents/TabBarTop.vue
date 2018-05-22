@@ -1,59 +1,42 @@
 <template>
 	<div class="tab-bar-top">
-		<!-- <tab >
-			<tab-item v-for="(item,index) in imgTabBar" :selected="index === 0" :key="item.sort" @click.native="tab(index)">{{item.name}}</tab-item>
-			</tab> -->
-			<tab>
-				<tab-item v-for="(item,index) in imgTabBar" :key="index" :selected="activeIndex==index" class="navItem">{{item.name}}</tab-item>
-			</tab>
-		
+		<tab>
+			<tab-item 
+				v-for="(item, index) in levels" 
+				:key="item.dict_id" 
+				:selected="selected == item.dict_id || index == 0" 
+				class="navItem"
+				@click.native="selectTab(item)">
+				{{item.value}}
+			</tab-item>
+		</tab>
 	</div>
 </template>
 <script type="text/javascript">
 import { Tab, TabItem } from 'vux'
+import request from '../../common/request'
 export default {
 	data() {
 		return {
-			activeIndex: 0,
-			imgTabBar: [{
-					"name": "性感美女",
-					"sort": 1
-				},
-				{
-					"name": "丝袜美腿",
-					"sort": 2
-				},
-				{
-					"name": "唯美写真",
-					"sort": 3
-				},
-				{
-					"name": "网络美女",
-					"sort": 4
-				},
-				{
-					"name": "高清美女",
-					"sort": 5
-				},
-				{
-					"name": "模特美女",
-					"sort": 6
-				},
-				{
-					"name": "体育美女",
-					"sort": 7
-				},
-				{
-					"name": "动漫美女",
-					"sort": 8
-				}
-			]
+			levels: [],
+			selected: ''
 		}
 	},
+	created() {
+		this.getLevels()
+	},
 	methods: {
-		tab: function(index){
-			this.activeIndex = index;
-			this.$emit('curPage',index+1)
+		selectTab(data){
+			this.selected = data.dict_id
+			this.$emit('selectLevel', data.dict_id)
+		},
+		getLevels() {
+			request({
+				url: '/sys_dict/list/type'
+			}).then(res => {
+				this.levels = res.data.data
+				this.$emit('selectLevel', this.levels[0].dict_id)
+			})
 		}
 	},
 	components: {
