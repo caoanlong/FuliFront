@@ -12,7 +12,7 @@
 					:key="leftItem.image_id" 
 					v-if="index % 2 == 0">
 					<div class="itemBox">
-						<x-img :src="imgUrlMini + leftItem.thumbnail.split('/image/uploads')[1]"/>
+						<x-img :src="imgUrlMiddle + leftItem.thumbnail.split('/image/uploads')[1]"/>
 						<p class="title">{{leftItem.name}}</p>
 						<p class="otherInfo">
 							<span class="view"><svg-icon icon-class="eye" font-size="14"></svg-icon> {{leftItem.view}}</span>
@@ -30,11 +30,11 @@
 					:key="rightItem.image_id" 
 					v-if="index % 2 != 0">
 					<div class="itemBox">
-						<x-img :src="imgUrlMini + leftItem.thumbnail.split('/image/uploads')[1]"/>
+						<x-img :src="imgUrlMiddle + rightItem.thumbnail.split('/image/uploads')[1]"/>
 						<p class="title">{{rightItem.name}}</p>
 						<p class="otherInfo">
-							<span class="view"><svg-icon icon-class="eye" font-size="14"></svg-icon> {{leftItem.view}}</span>
-							<span><svg-icon icon-class="like"></svg-icon> {{leftItem.like}}</span>
+							<span class="view"><svg-icon icon-class="eye" font-size="14"></svg-icon> {{rightItem.view}}</span>
+							<span><svg-icon icon-class="like"></svg-icon> {{rightItem.like}}</span>
 						</p>
 					</div>
 				</router-link>
