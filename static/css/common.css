@@ -5,12 +5,17 @@
 	-moz-box-sizing:border-box; /* Firefox */
 	-webkit-box-sizing:border-box; /* Safari */
 }
-body {
+html,body {
+	height: 100%;
 	background-color: #fbf9fe;
 	padding: 0;
 	min-width: 300PX;
 	max-width: 640PX;
 	margin: 0 auto;
+	overflow: hidden;
+}
+#app {
+	height: 100%
 }
 .eclipsis {
 	overflow: hidden; 
