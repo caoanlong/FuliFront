@@ -2,7 +2,9 @@
 	<div class="container" id="container">
 		<tab-bar-top @selectLevel="selectLevel"/>
 		<pull-to 
+			:top-load-method="refresh" 
 			:bottom-load-method="loadMore" 
+			@top-state-change="stateChange" 
 			@bottom-state-change="stateChange">
 			<div class="list">
 				<div class="left">
@@ -42,6 +44,15 @@
 					</router-link>
 				</div>
 			</div>
+			<template slot="top-block" slot-scope="props">
+				<div class="top-load-wrapper">
+					<svg-icon :class="{
+						'icon-arrow': props.state === 'trigger',
+						'icon-loading': props.state === 'loading'
+					}" :icon-class="icon"/>
+					{{ props.stateText }}
+				</div>
+			</template>
 			<template slot="bottom-block" slot-scope="props">
 				<div class="bottom-load-wrapper" v-if="isOver">~官人轻点，已经到底了~</div>
 				<div class="bottom-load-wrapper" v-else>
@@ -82,7 +93,14 @@ export default {
 	methods:{
 		selectLevel(level_id) {
 			this.level_id = level_id
+			this.pageIndex = 1
+			this.imgList = []
 			this.getList()
+		},
+		refresh(loaded) {
+			this.pageIndex = 1
+			this.imgList = []
+			this.getList(loaded)
 		},
 		loadMore(loaded) {
 			if (this.isOver) {
@@ -114,7 +132,7 @@ export default {
 		},
 		stateChange(state) {
 			if (state === 'pull' || state === 'trigger') {
-			  this.icon = 'arrowup'
+			  this.icon = 'arrowdown'
 			} else if (state === 'loading') {
 			  this.icon = 'sync'
 			} else if (state === 'loaded-done') {
@@ -126,7 +144,7 @@ export default {
 
 </script>
 <style lang="stylus" scoped>
-.bottom-load-wrapper
+.top-load-wrapper,.bottom-load-wrapper
 	line-height 50px
 	text-align center
 	color #aaa

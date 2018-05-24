@@ -5,7 +5,7 @@ import Login from '@/components/Login'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
 	mode: 'history',
 	routes: [
 		{
@@ -34,10 +34,31 @@ export default new Router({
 					component: () => import('@/components/UserCenter')
 				}
 			]
-		},{
+		},
+		{
 			path: '/login',
 			name: 'login',
 			component: Login
 		}
 	]
 })
+
+router.beforeEach((to, from, next) => {
+	if (localStorage.getItem('token') && localStorage.getItem('token') != 'undefined') {
+		if (to.path === '/login') {
+			next({ path: '/' })
+		} else {
+			next()
+		}
+	} else {
+		next()
+		/* has no token*/
+		// if (to.path === '/login') {
+		// 	next()
+		// } else {
+		// 	next({ path: '/login' })
+		// }
+	}
+})
+
+export default router

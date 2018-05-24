@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 
 import globals from '../src/common/global'
 import './assets/icons' // icon
@@ -17,6 +18,7 @@ Vue.config.productionTip = false
 export const vue = new Vue({
 	el: '#app',
 	router,
+	store,
 	components: { App },
 	template: '<App/>'
 })

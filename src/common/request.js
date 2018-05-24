@@ -29,17 +29,17 @@ service.interceptors.response.use(
 				|| response.data.code == 104 ) {
 				localStorage.clear()
 				vue.$vux.toast.text(response.data.msg)
-				window.location.href = '/#/login'
-				return Promise.reject('error')
+				window.location.href = '/login'
+				return response
 			}
 			vue.$vux.toast.text(response.data.msg)
-			return Promise.reject('error')
+			return response
 		}
 		return response
 	},
 	error => {
 		vue.$vux.toast.text(error.message)
-		return Promise.reject(error)
+		return response
 	})
 
 export default service
