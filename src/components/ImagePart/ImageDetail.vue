@@ -1,7 +1,7 @@
 <template>
 	<pull-to>
 		<div class="imgView">
-			<x-img container=".scroll-container" :src="imgUrl + item" v-for="item in imgData.content" :key="item"/>
+			<x-img container=".scroll-container" :src="imgUrlLarge + item.split('/image/uploads')[1]" v-for="item in imgData.content" :key="item"/>
 		</div>
 		<div class="control">
 			<div class="like" :class="{'active': imgData.isLiked}" @click="like">
