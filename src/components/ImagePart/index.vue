@@ -43,7 +43,7 @@
 				</div>
 			</div>
 			<template slot="bottom-block" slot-scope="props">
-				<div class="bottom-load-wrapper" v-if="isOver">~已经到底了~</div>
+				<div class="bottom-load-wrapper" v-if="isOver">~官人轻点，已经到底了~</div>
 				<div class="bottom-load-wrapper" v-else>
 					<svg-icon :class="{
 						'icon-arrow': props.state === 'trigger',
@@ -67,7 +67,7 @@ export default {
 		return {
 			imgList: [],
 			pageIndex: 1,
-			pageSize: 10,
+			pageSize: 40,
 			level_id: '',
 			icon: '',
 			isOver: false
