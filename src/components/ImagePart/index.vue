@@ -95,11 +95,13 @@ export default {
 			this.level_id = level_id
 			this.pageIndex = 1
 			this.imgList = []
+			this.isOver = false
 			this.getList()
 		},
 		refresh(loaded) {
 			this.pageIndex = 1
 			this.imgList = []
+			this.isOver = false
 			this.getList(loaded)
 		},
 		loadMore(loaded) {
